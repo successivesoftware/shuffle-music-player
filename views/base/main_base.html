@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}Desktop Command Remote{% endblock %}</title>
+
+  <script type="text/javascript" src="/static/lib/headjs/head.min.js"></script>
+
+  <script type="text/javascript">
+  head.load(
+    "/static/lib/font-awesome-bower/css/font-awesome.css",
+    "/static/lib/libs.min.css",
+    "/static/css/main.css"
+    );
+  var music_dir = "{{music_dir}}";
+  var music_dir_set = "{{music_dir_set}}" === "true";
+  </script>
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  {% if menu %}
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <img class="nav navbar-nav" src="static/images/successivesoft4.png" style="display: inline;">
+    <a class="navbar-brand" href="/">
+      Music Player</a>
+    <ul class="nav navbar-nav">
+      <!--<li><a href="/">Music</a></li>-->
+      <li class='dropdown'>
+        <a class='pointer dropdown-toggle' data-toggle='dropdown'>Scan Library <span class="caret"></span></a>
+        <ul class='dropdown-menu' role='menu'>
+          <li><a class='pointer' id='soft_scan'>Regular Scan</a></li>
+          <li><a class='pointer' id='hard_scan'>Hard Rescan</a></li>
+        </ul>
+      </li>
+      <!--<li><a class='pointer' id='load_sync_view'>Sync Libraries</a></li>-->
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      {% block extra_nav %}{% endblock %}
+    </ul>
+  </nav>
+  {% endif %}
+  {% block content %}
+  {% endblock %}
+  <script type="text/javascript">
+    head.js(
+      "/static/lib/libs.min.js",
+      "/static/js/player/utils.js",
+      "/static/js/player/models.js",
+      "/static/js/player/player.js",
+      "/static/js/player/socket.js",
+      "/static/js/player/backbone_setup.js",
+      "/static/js/player/settingsview.js",
+      "/static/js/player/onload.js",
+      "/static/js/player/songview.js",
+      "/static/js/player/selection_options.js",
+      "/static/js/player/detailview.js",
+      "/static/js/player/syncview.js",
+      "/static/js/player/footer.js",
+      "/static/js/player/coverbox.js"
+      );
+  </script>
+  {% block scripts %}
+  {% endblock %}
+</body>
+</html>
